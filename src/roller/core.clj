@@ -9,7 +9,6 @@
     (flatten (map #(find-all-files %) (.listFiles f)))))
 
 (defn filter-files
-  "Finds file-like structures that are not hidden according to the OS."
   [dirlist dest]
   (filter #(and (.contains (.getName %) ".org")
                 (not=(.getName %) dest)
@@ -32,6 +31,7 @@
 
 (defn -main
   [& args]
+  "Roll all emacs org files below a point into a single destination file."
   (if (= 2 (count args))
     (let [src (io/file (first args))
           dest (second args)]
